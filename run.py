@@ -1,5 +1,6 @@
 from App import createApp, db
 
+# Create flask application
 app = createApp()
 
 # create the database and the database tables
