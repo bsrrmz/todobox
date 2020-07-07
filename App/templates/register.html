@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+<div class="login register">
+  <form action="/register" method="post" class="container login">
+    <h1>Sign up</h1>
+    <fieldset>
+      <legend><span class="number">1</span> Basic info</legend>
+      <input type="text" id="name" name="username" placeholder="Username" autocomplete="off" required="required" autofocus>
+      <input type="email" id="email" name="email" placeholder="email address" autocomplete="off"  required="required">
+      <input type="password" id="password" name="user_password" placeholder="Password"  required>
+      <input type="password" id="password" name="password_confirmation"  placeholder="Confirm Password" required>
+      <div class="user-gender">
+        <label></label>
+        <input type="radio" id="male" value="male" name="user_gender" title="Please select gender" required>
+        <label for="male" class="light">Male</label>
+        <input type="radio" id="female" value="female" name="user_gender" title="Please select gender" required>
+        <label for="female" class="light">Female</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="user-job">
+      <legend><span class="number">2</span> Profile</legend>
+      <select id="job" name="user_job" required>
+        <option value="" disabled selected hidden>Select your job role</option>
+        <optgroup label="Web">
+          <option value="frontend_developer">Front-End Developer</option>
+          <option value="php_developer">PHP Developer</option>
+          <option value="python_developer">Python Developer</option>
+          <option value="rails_developer">Rails Developer</option>
+          <option value="web_designer">Web Designer</option>
+          <option value="wordpress_developer">WordPress Developer</option>
+        </optgroup>
+        <optgroup label="Mobile">
+          <option value="android_developer">Android Developer</option>
+          <option value="ios_developer">iOS Developer</option>
+          <option value="mobile_designer">Mobile Designer</option>
+        </optgroup>
+        <optgroup label="Business">
+          <option value="business_owner">Business Owner</option>
+          <option value="freelancer">Freelancer</option>
+        </optgroup>
+      </select>
+    </fieldset> <!-- .user-job -->
+
+    <button type="submit" class="btn btn-primary">Sign Up</button><br><br>
+    <span>Already have an account?   </span><a style="color:#55acee;" href="/login" class="new-account"> Sign In</a>
+  </form>
+  
+</div>
+{% endblock %}

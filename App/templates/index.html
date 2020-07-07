@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block nav %}
+  <a class="nav-link login" href="/login">Sign In</a></li>
+{% endblock %}
+
+{% block home %}
+  <div class="container"> 
+    <div class="portfolio">
+      <section>
+        <div>
+          <h1>Keep it all together with TodoBox.</h1>
+          <p>TodoBox helps you to keep track of your daily activities. <br> Wether it's for work, side project or family vocation, </br>TodoBox enables you to track all of your tasks.</p>
+          <a href="/register" class="btn new-account">Sign Up - It's Free!</a>
+          
+        </div>
+        <div>
+          <img src="/static/mock-up11.png"  class="mock-up" alt="laptop mock-up" loading="lazy" alt="">
+        </div>
+      </section>
+    </div>
+  </div> <!--Task container--> 
+  
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

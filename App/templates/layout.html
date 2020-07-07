@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- External CSS-->
+        <link href="/static/favicon.ico" rel="icon">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="/static/css/normalize.css" rel="stylesheet">
+ 
+        <!-- Custom CSS -->
+        <link href="/static/css/styles.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+       
+        <title>TodoBox | {% block title %}{% endblock %}</title>
+        {% block style %}
+        {% endblock %}
+    </head>
+    <body>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <header id="hide">
+            <div class="alert {{category}}" role="alert">                      
+                {{ message }}
+            </div>
+          </header>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+      <nav class="main-header">
+        <div class="nav-list">  
+          <a class="brand" href="/">  
+            <img src="/static/icon.png" width="34" height="34" class="logo" alt="company logo" loading="lazy">
+              <spam class="name"> 
+                TodoBox
+              </spam>         
+          </a>
+          {% if current_user.is_authenticated %}
+            <div class="dropdown">
+              <button class="dropdown_button" id="toggle-menu"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+              <ul class="dropdown_menu" id="foo">
+
+                <li class="nav-item">  
+                  <a class="nav-link" href="{{ url_for('tasks.task') }}" title="Tasks">
+                    <span class="button-circle">   
+                      <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                    </span>
+                    <span>Task</span> 
+                    
+                  </a>
+                </li>
+                
+                <li class="nav-item">  
+                  <a class="nav-link" href="{{ url_for('user.account') }}" title="Account">
+                    <span class="button-circle">   
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                    <span>Account</span> 
+                    
+                  </a>
+                </li>
+                  
+                <li class="nav-item">  
+                  <a class="nav-link" href="{{ url_for('user.logout') }}" title="Logout">
+                    <span class="button-circle">   
+                      <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </span>
+                    <span>Logout</span> 
+                  </a>
+                </li>
+                  
+                </ul>
+            </div>
+          {% else %}
+            {% block nav %}
+            {% endblock %}
+          {% endif %}
+        </div>
+      </nav> <!-- .main-header -->
+      <div class="wrapper">
+        {% block home %}
+        {% endblock %}
+      </div>
+      <main class="wrap">
+        {% block main %}
+        {% endblock %}
+      </main> <!-- .wrap -->
+
+      <footer class="main-footer">
+          <spam>&copy; 2020 TodoBox  |  Author - <a href="https://www.instagram.com/basirramiz/"> Basir</a></spam>
+      </footer> 
+      
+      {% block script %}
+      {% endblock %}
+
+      <!-- hide messages -->
+      <script type="text/javascript">
+          $(document).ready(function(){
+             $("#hide").delay(5000).slideUp(500);
+          });  
+          
+          $("#toggle-menu").click(function(){
+          $("#foo").toggle();
+          });
+
+      </script> 
+    </body> 
+</html>

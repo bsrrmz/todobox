@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Task
+{% endblock %}
+
+{% block main %}
+  <div class="current-time">
+    <h4 id="dateTime">Sunday, Jun 21, 2:92</h4>
+  </div>  <!-- .current-time -->
+
+  <div class=" container info-weather">
+    <ul class="weather-details">
+      <li>
+        <span  class="weather-city" id="city"></span>
+        <div>
+          <span class="weather-description"></span>
+          <span class="max-min-temp"></span>
+        </div>
+        <span class="humidity"></span> 
+      </li>
+      <li>
+        <div>
+          <img src=""  class="weather icon" alt="weather icon" loading="lazy" alt="">
+        </div> 
+      </li>
+      <li>
+        <div>
+          <span class="weather-temp"></span>
+        </div>
+      </li>
+      
+    </ul>
+  </div> <!-- .info-weather -->
+
+  <form action="/task/new" method="post" class="task-form">
+    <div class="add-box" id="task-form">
+      <input type="text" class="task-input" id="title" name="title" placeholder="Title" autocomplete="off">
+      <textarea class="task-description" id="story" name="description"  placeholder="Take a note..."></textarea>  
+    </div>
+    <button type="submit" class="add-button">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </form> <!--Add task form .task-form--> 
+
+  <div class="container task"> 
+    <div class="tabs">
+        <input type="radio" id="tab1-1" name="tab" value="todo-list" checked="checked">
+        <input type="radio" id="tab2-2" name="tab" value="todo-list" >
+        <nav>
+          <ul>
+            <li class="tab1">
+              
+              <label for="tab1-1"><i class="fa fa-thumb-tack" aria-hidden="true"></i>Todo list</label>
+            </li>
+            <li class="tab2">
+              
+              <label for="tab2-2"><i class="fa fa-check-square-o" aria-hidden="true"></i>Completed</label>
+            </li>
+          </ul>
+        </nav> <!-- Tab Navigation -->
+      
+        <section> 
+          <div class="tab1">
+            
+              {% for task in tasks if not task._isDone and not task._isDeleted%}
+                  <div class="task-item">
+                    <span>
+                      <p>{{task.createdOn.strftime("%d %B, %Y")}}</p>
+                      <h4>{{task.title}}</h4>
+                      <p>{{task.description}}</p>
+                    </span>
+                    <div>
+                      <span class="button">
+                          <a href="{{ url_for('tasks.update', task_id=task.id) }}" title="Completed">
+                          <i class="fa fa-check" aria-hidden="true"></i> 
+                          </a>
+                      </span>
+                      <span class="button">
+                        <a href="{{ url_for('tasks.delete', task_id=task.id) }}" title="Delete">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                      </span>
+                    </div>
+                  </div> 
+                  {% else %}
+                  <h4 class="text-info">No task added</h4>
+                {% endfor%}
+          </div> <!-- .tab1 --> 
+           
+          <div class="tab2">
+              {% for task in tasks if task._isDone and not task._isDeleted%}
+                  <div class="task-item">
+                    <span>
+                      <p>{{task.createdOn.strftime("%d %B, %Y")}}</p>
+                      <h4>{{task.title}}</h4>
+                      <p>{{task.description}}</p>
+                    </span>
+                    <div>
+                      <span class="button">
+                          <a href="{{ url_for('tasks.update', task_id=task.id) }}" title="Incomplete">
+                            <i class="fa fa-thumb-tack" aria-hidden="true"></i> 
+                          </a>
+                      </span>
+                      <span class="button">
+                        <a href="{{ url_for('tasks.delete', task_id=task.id) }}" title="Delete">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                      </span>
+                    </div>
+                  </div> 
+              {% else %}
+                  <h4 class="text-info">No task completed</h4>
+              {% endfor %} 
+          </div> <!-- .tab2 -->
+        </section>
+    </div> <!-- .tabs -->
+  </div> <!--Task container--> 
+{% endblock %}
+
+{% block script %}
+<!-- Display weather details in .weather-details DOM -->
+<script src="{{ url_for('static', filename='weather.js')}}"></script>
+{% endblock %}

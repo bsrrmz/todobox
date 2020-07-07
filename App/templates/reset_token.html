@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reset Password
+{% endblock %}
+
+{% block main %}
+<div class="login recover">
+  <form action="{{url_for('user.resetToken', token=token)}}" method="post" class="container login">
+    <h2 style="margin-bottom: 26px;">Reset your password</h2>
+    <fieldset>
+        <input type="password" id="password" name="new_password" placeholder="New Password"  required>
+        <input type="password" id="password" name="password_confirmation"  placeholder="Confirm Password" required>
+    </fieldset>
+    <div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  </form>
+</div> 
+{% endblock %}

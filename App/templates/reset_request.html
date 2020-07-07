@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Forgotten Password | Can't log in
+{% endblock %}
+
+{% block main %}
+<div class="login recover">
+  <form action="{{url_for('user.resetRequest')}}" method="post" class="container login">
+    <h2>Find Your Account</h2>
+    
+    <fieldset>
+      <label for="email">Please enter your email address to search for your account.</label>
+      <input type="text" id="email" name="email" placeholder="Email" autocomplete="off" autofocus   required>
+    </fieldset>
+    <div> 
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{{url_for('user.login')}}" class="btn">Cancel</a>
+  </div>
+  </form>
+</div>  <!-- .login.recover -->
+ 
+{% endblock %}

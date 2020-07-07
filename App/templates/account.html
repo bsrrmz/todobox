@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+<!-- <h2 style="font-weight: 400;">General Account Settings</h2> -->
+<div class="container">  
+    
+    <div class="user-avatar">
+        <div class="avatar1">
+            <img src="{{avatar}}" alt="Avatar" class="avatar">
+        </div>
+        <div class="username">
+            <h4>{{current_user.username}}</h4>
+            <span>{{current_user.email}}</span>
+        </div>
+    </div> <!-- .user-avatar -->
+    <form action="/account" method="post" class="account-info" enctype=multipart/form-data>
+        <fieldset>
+        <aside>
+            <label for="avatr"></label>
+        </aside>
+        <div>
+            <legend>Edit Profile</legend>
+        </div>
+          <aside>   
+             <label for="name">Username</label>
+          </aside>
+          <input type="text" id="name" name="username" placeholder="{{current_user.username}}">
+          
+          <aside>
+              <label for="email">Email Address</label>
+          </aside>
+          <input type="email" id="email" name="email" placeholder="{{current_user.email}}" autocomplete="off">
+          <aside>
+            <label for="avatr">Profile Picture</label>
+        </aside>
+        <label for="avatar"><i class="fa fa-picture-o" aria-hidden="true"></i> Choose a Photo</label>
+        <input accept="image/jpeg,image/png" type="file" id="avatar" name="file">
+        
+          <aside>
+            <label for="avatr"></label>
+          </aside>
+          <div>
+              <legend>Change Password</legend>
+          </div>
+          
+          <aside>   
+            <label for="password">Old password</label>
+         </aside>
+          <input type="password" id="password" name="user_password" placeholder="Old Password">
+
+          <aside>   
+            <label for="password">New password</label>
+         </aside>
+          <input type="password" id="password" name="new_password" placeholder="New Password">
+
+          <aside>   
+            <label for="password">Confirm password</label>
+         </aside>
+          <input type="password" id="password" name="password_confirmation"  placeholder="Confirm New Password">
+    
+        </fieldset>
+        <fieldset>
+         <br>
+        <aside>
+            <label for="avatr"></label>
+        </aside>
+        <div>
+             <button type="submit" class="btn btn-primary">Submit</button><br><br>
+        </div>
+        <label class="file">
+            <input type="file" id="file" aria-label="File browser example">
+            <span class="file-custom"></span>
+          </label>
+    </fieldset>
+    </form> <!-- form.account-info  -->
+</div> <!-- .container-->
+{% endblock %}
