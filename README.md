@@ -17,7 +17,7 @@ Setting up Local Development
 
 First, clone this repository:
 
-    $ git clone https://github.com/bas1r/flask_todobox.git
+    $ git clone https://github.com/bas1r/todobox.git
 
 You can use pip to install the requirements:
 
